@@ -4,7 +4,7 @@ const recDurMs = 3000;
 function main() {
 
     log("program starting.");
-    myBtnHandler();
+    myBtnHandler(); // see output in console.log
     startAndDownloadBtnHandler();
     sayDelayedMsg(1000);
 
@@ -55,24 +55,9 @@ function startAndDownloadBtnHandler() {
 
     startButton.addEventListener("click", () => {
         navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 360 }, audio: true })
-            .then((stream) => {
-                preview.srcObject = stream;
-                downloadBtn.href = stream;
-                preview.captureStream = preview.captureStream || preview.mozCaptureStream;
-                return new Promise((resolve) => (preview.onplaying = resolve));
-            })
+            .then((stream) => previewStream(stream))
             .then(() => startRecording(preview.captureStream(), recDurMs))
-            .then((recdChunks) => {
-                let blob = new Blob(recdChunks, { type: "video/webm" });
-                recording.src = URL.createObjectURL(blob);
-                log(`Setting href=${recording.src}.`)
-                downloadBtn.href = recording.src;
-                downloadBtn.download = "RecordedVideo.webm";
-
-                log(`Sucessfully recorded ${blob.size} bytes of ${blob.type}.`)
-
-            })
-            // .then(() => stop(preview.srcObject))
+            .then((recdChunks) => makeRecording(recdChunks))
             .catch((err) => {
                 if (err.name === "NotFoundError") {
                     log("Camera or microphone not found. Cannot record.");
@@ -81,6 +66,24 @@ function startAndDownloadBtnHandler() {
                 log(err);
             });
     }, false);
+
+    function previewStream(stream) {
+        preview.srcObject = stream;
+        downloadBtn.href = stream;
+        preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+        return new Promise((resolve) => (preview.onplaying = resolve));
+    }
+
+    function makeRecording(recdChunks) {
+        let blob = new Blob(recdChunks, { type: "video/webm" });
+        recording.src = URL.createObjectURL(blob);
+        log(`Setting href=${recording.src}.`)
+        downloadBtn.href = recording.src;
+        downloadBtn.download = "RecordedVideo.webm";
+
+        log(`Sucessfully recorded ${blob.size} bytes of ${blob.type}.`)
+    }
+
 }
 
 function myBtnHandler() {
