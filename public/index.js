@@ -23,7 +23,8 @@ function stop(stream) {
 
 function startRecording(stream, lenMs) {
     let preview = document.getElementById("preview");
-    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=vp9" });
+    // let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=vp9" });
+    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1" });
     let data = [];
 
     rec.ondataavailable = (event) => data.push(event.data);

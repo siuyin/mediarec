@@ -14,15 +14,22 @@
     <h1>Video Recorder</h1>
     <div class="vidPanel">
         <div class="left">
-            <button id="startButton">Start Recording</button>
-            <button id="myBtn">My Button</button>
             <h2>Preview</h2>
             <video id="preview" width="160" autoplay muted></video>
+            <div>
+                <button id="startButton">Start Recording</button>
+                <button id="myBtn">My Button</button>
+            </div>
         </div>
 
         <div class="right">
-            <video id="recording" width="160" controls></video>
-            <a href="junk" id="download">Download</a>
+            <h2>Recording</h2>
+            <div>
+                <video id="recording" width="160" controls></video>
+            </div>
+            <div>
+                <a href="junk" id="download"><button>Download</button></a>
+            </div>
         </div>
     </div>
 
