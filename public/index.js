@@ -5,7 +5,7 @@ function main() {
 
     log("program starting.");
     myBtnHandler();
-    startBtnHandler();
+    startAndDownloadBtnHandler();
     sayDelayedMsg(1000);
 
 }
@@ -47,7 +47,7 @@ function startRecording(stream, lenMs) {
     return Promise.all([stopped, recorded]).then(() => data);
 }
 
-function startBtnHandler() {
+function startAndDownloadBtnHandler() {
     let startButton = document.getElementById("startButton");
     let downloadBtn = document.getElementById("download");
     let preview = document.getElementById("preview");
