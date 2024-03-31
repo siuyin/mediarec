@@ -1,0 +1,27 @@
+#startButton {
+    background-color: crimson;
+}
+
+
+#startButton:hover {
+    background-color: red;
+    color: white;
+}
+
+
+div.vidPanel {
+    display: flex;
+    justify-content: space-between;
+}
+
+#log {
+    background-color: whitesmoke;
+    font-size: small;
+}
+
+.junk {
+    color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

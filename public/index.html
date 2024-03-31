@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyPage</title>
+    <link rel="stylesheet" href="simple.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Video Recorder</h1>
+    <div class="vidPanel">
+        <div class="left">
+            <button id="startButton">Start Recording</button>
+            <button id="myBtn">My Button</button>
+            <h2>Preview</h2>
+            <video id="preview" width="160" autoplay muted></video>
+        </div>
+
+        <div class="right">
+            <video id="recording" width="160" controls></video>
+            <a href="junk" id="download">Download</a>
+        </div>
+    </div>
+
+    <div id="log"></div>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
