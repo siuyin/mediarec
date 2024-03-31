@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/siuyin/dflt"
+	"github.com/siuyin/mediarec/public"
 )
 
 func main() {
@@ -11,7 +14,8 @@ func main() {
 		fmt.Fprintf(w, "Hello World\n")
 	})
 
-	http.Handle("/", http.FileServer(http.Dir("./public")))
+	// http.Handle("/", http.FileServer(http.Dir("./public"))) // uncomment for development
+	http.Handle("/", http.FileServerFS(public.Content)) // uncomment for deployment
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8080"), nil))
 }
