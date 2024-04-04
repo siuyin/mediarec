@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/siuyin/dflt"
-	"github.com/siuyin/mediarec/internal/public"
+	"github.com/siuyin/mediarec/videorec/internal/public"
 )
 
 func main() {

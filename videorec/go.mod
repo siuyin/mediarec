@@ -1,4 +1,4 @@
-module github.com/siuyin/mediarec
+module github.com/siuyin/mediarec/videorec
 
 go 1.22.0
 
