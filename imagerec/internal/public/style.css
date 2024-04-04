@@ -2,7 +2,7 @@
     background-color: crimson;
 }
 
-#startCam:hover {
+#startCam:hover:enabled {
     background-color: red;
 }
 
