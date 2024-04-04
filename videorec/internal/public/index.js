@@ -1,10 +1,7 @@
-import { myFn } from "./modules/experiments.js";
-
 const recDurMs = 3000;
 function main() {
 
     log("program starting.");
-    myBtnHandler(); // see output in console.log
     startAndDownloadBtnHandler();
     sayDelayedMsg(1000);
 
@@ -24,7 +21,8 @@ function stop(stream) {
 function startRecording(stream, lenMs) {
     let preview = document.getElementById("preview");
     // let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=vp9" }); // Vertex AI is hallucinating badly with all videos.
-    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1" }); // AV1 does not currently work with Vertex AI
+    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1",bitsPerSecond:500000 }); // AV1 does not currently work with Vertex AI
+    // let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1" }); // AV1 does not currently work with Vertex AI
     let data = [];
 
     rec.ondataavailable = (event) => data.push(event.data);
@@ -85,12 +83,6 @@ function startAndDownloadBtnHandler() {
     }
 
 }
-
-function myBtnHandler() {
-    let myBtn = document.getElementById("myBtn");
-    myBtn.addEventListener("click", (ev) => myFn(ev));
-}
-
 
 function sayDelayedMsg(ms) {
     wait(ms).then(() => log(`${ms}ms delay over.`));
