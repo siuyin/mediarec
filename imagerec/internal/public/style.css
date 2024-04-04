@@ -1,0 +1,7 @@
+#startCam {
+    background-color: crimson;
+}
+
+#startCam:hover {
+    background-color: red;
+}

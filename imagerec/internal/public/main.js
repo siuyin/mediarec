@@ -1,16 +1,33 @@
+const startBtn = document.getElementById("startCam");
+const stopBtn = document.getElementById("stopCam");
 const video = document.getElementById('video');
 const captureButton = document.getElementById('capture-button');
 const downloadLink = document.getElementById('download-link');
 
-captureButton.addEventListener('click', captureImage);
-
-async function captureImage() {
+stopBtn.disabled = true;
+startBtn.addEventListener("click", startCam);
+async function startCam() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 360 } });
         video.srcObject = stream;
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+    } catch (err) {
+        console.error('Error starting web cam:', err);
+    }
+}
 
+stopBtn.addEventListener("click", stopCam);
+function stopCam() {
+    stop(video.srcObject);
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+}
+
+captureButton.addEventListener('click', captureImage);
+async function captureImage() {
+    try {
         const canvas = document.createElement('canvas');
-        //const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext('2d');
 
         canvas.width = video.width;
@@ -34,7 +51,6 @@ async function captureImage() {
 function stop(stream) {
     stream.getTracks().forEach((trk) => trk.stop());
 }
-
 
 function myDateFmt(date) {
     return date.getFullYear()
