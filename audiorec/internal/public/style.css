@@ -1,0 +1,7 @@
+.min {
+    width: fit-content;
+}
+
+#record-btn:active {
+    background-color: red;
+}
