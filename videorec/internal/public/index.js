@@ -21,7 +21,7 @@ function stop(stream) {
 function startRecording(stream, lenMs) {
     let preview = document.getElementById("preview");
     // let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=vp9" }); // Vertex AI is hallucinating badly with all videos.
-    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1",bitsPerSecond:500000 }); // AV1 does not currently work with Vertex AI
+    let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1", bitsPerSecond: 500000 }); // AV1 does not currently work with Vertex AI
     // let rec = new MediaRecorder(stream, { mimeType: "video/webm; codecs=av1" }); // AV1 does not currently work with Vertex AI
     let data = [];
 
@@ -77,7 +77,7 @@ function startAndDownloadBtnHandler() {
         recording.src = URL.createObjectURL(blob);
         log(`Setting href=${recording.src}.`)
         downloadBtn.href = recording.src;
-        downloadBtn.download = "RecordedVideo.webm";
+        downloadBtn.download = myDateFmt(new Date())+".webm";
 
         log(`Sucessfully recorded ${blob.size} bytes of ${blob.type}.`)
     }
@@ -86,4 +86,14 @@ function startAndDownloadBtnHandler() {
 
 function sayDelayedMsg(ms) {
     wait(ms).then(() => log(`${ms}ms delay over.`));
+}
+
+function myDateFmt(date) {
+    return date.getFullYear()
+        + String(date.getMonth() + 1).padStart(2, "0")
+        + String(date.getDate()).padStart(2, "0")
+        + "-"
+        + String(date.getHours()).padStart(2, "0")
+        + String(date.getMinutes()).padStart(2, "0")
+        + String(date.getSeconds()).padStart(2, "0");
 }
