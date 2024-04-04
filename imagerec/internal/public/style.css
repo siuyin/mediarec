@@ -5,3 +5,11 @@
 #startCam:hover {
     background-color: red;
 }
+
+.min {
+    width: fit-content;
+}
+
+video {
+    margin: 3px;
+}
