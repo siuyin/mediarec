@@ -33,16 +33,14 @@ async function captureImage() {
         canvas.width = video.width;
         canvas.height = video.height;
 
-        setTimeout(() => {
-            ctx.drawImage(video, 0, 0)
-            canvas.toBlob((blob) => {
-                let url = URL.createObjectURL(blob);
-                downloadLink.href = URL.createObjectURL(blob);
-                downloadLink.download = myDateFmt(new Date()) + ".jpg";
-                downloadLink.click();
-                URL.revokeObjectURL(url);
-            }, "image/jpeg");
-        }, 40); // one PAL frame?
+        ctx.drawImage(video, 0, 0)
+        canvas.toBlob((blob) => {
+            let url = URL.createObjectURL(blob);
+            downloadLink.href = URL.createObjectURL(blob);
+            downloadLink.download = myDateFmt(new Date()) + ".jpg";
+            downloadLink.click();
+            URL.revokeObjectURL(url);
+        }, "image/jpeg");
     } catch (error) {
         console.error('Error capturing image:', error);
     }
