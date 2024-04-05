@@ -26,3 +26,9 @@ jobs:
 
     - name: Test videorec
       run: cd videorec; go test -v ./...
+
+    - name: Build audiorec
+      run: cd audiorec; go build -v ./...
+
+    - name: Test audiorec
+      run: cd audiorec; go test -v ./...
