@@ -28,6 +28,8 @@ jobs:
       
     - name: Build videorec
       run: cd videorec; go build -v ./...
+    - name: Build videorec docker image
+      run: cd videorec; skaffold build
 
     - name: Test videorec
       run: cd videorec; go test -v ./...
