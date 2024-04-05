@@ -14,8 +14,8 @@ func main() {
 		fmt.Fprintf(w, "Hello World! It is %v\n", time.Now().Format("15:04:05.000 MST"))
 	})
 
-	http.Handle("/", http.FileServer(http.Dir("./internal/public"))) // uncomment for development
-	// http.Handle("/", http.FileServer(http.FS(public.Content))) // uncomment for deployment
+	// http.Handle("/", http.FileServer(http.Dir("./internal/public"))) // uncomment for development
+	http.Handle("/", http.FileServer(http.FS(public.Content))) // uncomment for deployment
 
 	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8080"), nil))
 }
