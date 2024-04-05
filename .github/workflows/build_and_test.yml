@@ -29,15 +29,6 @@ jobs:
     - name: Build videorec
       run: cd videorec; go build -v ./...
 
-    - name: Login to Docker hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKER_LOGIN }}
-        password: ${{ secrets.DOCKER_PASSWD }}
-
-    - name: Build videorec docker image
-      run: cd videorec; skaffold build
-
     - name: Test videorec
       run: cd videorec; go test -v ./...
 
