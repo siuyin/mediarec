@@ -1,6 +1,7 @@
 const recordButton = document.getElementById('record-btn');
 let mediaRecorder;
 let audioChunks = [];
+let audStream = null;
 
 recordButton.addEventListener('mousedown', startRecording);
 recordButton.addEventListener('mouseup', stopRecordingAndDownload);
@@ -12,6 +13,7 @@ function startRecording() {
             // mediaRecorder = new MediaRecorder(stream,{mimeType:"audio/webm;codecs=opus"});
             mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
             mediaRecorder.start();
+            audStream = stream;
         })
         .catch(err => console.error(err));
 }
@@ -28,6 +30,7 @@ function stopRecordingAndDownload() {
             link.download = filename;
             link.click();
             audioChunks = [];
+            stop(audStream);
         };
     }
 }
@@ -40,4 +43,8 @@ function myDateFmt(date) {
         + String(date.getHours()).padStart(2, "0")
         + String(date.getMinutes()).padStart(2, "0")
         + String(date.getSeconds()).padStart(2, "0");
+}
+
+function stop(stream) {
+    stream.getTracks().forEach((trk) => trk.stop());
 }
