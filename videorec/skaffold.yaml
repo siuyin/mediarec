@@ -5,4 +5,5 @@ build:
   artifacts:
   - image: siuyin/junk
   local:
-    push: false
+    push: true
+    # push: false
