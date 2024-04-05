@@ -32,3 +32,9 @@ jobs:
 
     - name: Test audiorec
       run: cd audiorec; go test -v ./...
+
+    - name: Build imagerec
+      run: cd imagerec; go build -v ./...
+
+    - name: Test imagerec
+      run: cd imagerec; go test -v ./...
