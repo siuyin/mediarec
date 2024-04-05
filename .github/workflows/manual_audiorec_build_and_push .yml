@@ -23,5 +23,5 @@ jobs:
         username: ${{ secrets.DOCKER_LOGIN }}
         password: ${{ secrets.DOCKER_PASSWD }}
 
-    - name: Build videorec docker image
+    - name: Build audiorec docker image
       run: cd audiorec; skaffold build
